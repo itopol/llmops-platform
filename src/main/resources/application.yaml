@@ -1,3 +1,22 @@
 spring:
   application:
     name: llmops-platform
+  ai:
+    azure:
+      openai:
+        api-key: ${AZURE_OPENAI_API_KEY}
+        endpoint: ${AZURE_OPENAI_ENDPOINT}
+        chat:
+          options:
+            deployment-name: ${AZURE_OPENAI_DEPLOYMENT_NAME}
+            temperature: 0.2
+            maxTokens: 512
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
