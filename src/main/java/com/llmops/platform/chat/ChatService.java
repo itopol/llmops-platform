@@ -33,13 +33,10 @@ public class ChatService {
         }
 
         var result = response.getResult();
-        if (result == null || result.getOutput() == null) {
-            throw new IllegalStateException("Spring AI response missing result/output.");
-        }
         String answer = result.getOutput().getText();
 
         // Usage can be absent depending on provider/settings
-        Usage usage = (response.getMetadata() != null) ? response.getMetadata().getUsage() : null;
+        Usage usage = response.getMetadata().getUsage();
 
         long promptTokens = (usage != null) ? usage.getPromptTokens() : 0L;
         long completionTokens = (usage != null) ? usage.getCompletionTokens() : 0L;
