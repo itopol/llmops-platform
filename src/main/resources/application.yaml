@@ -1,6 +1,11 @@
 spring:
   application:
     name: llmops-platform
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${AZURE_AD_ISSUER_URI}
   ai:
     azure:
       openai:
@@ -11,6 +16,9 @@ spring:
             deployment-name: ${AZURE_OPENAI_DEPLOYMENT_NAME}
             temperature: 0.2
             maxTokens: 512
+
+security:
+  org-claim-name: ${SECURITY_ORG_CLAIM_NAME:org_id}
 
 management:
   endpoints:
